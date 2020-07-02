@@ -32,4 +32,6 @@ jobs:
       run: make test
 
     - name: Run godacov
+      env:
+        CODACY_TOKEN: ${{ secrets.CODACY_TOKEN }}
       run: make godacov
