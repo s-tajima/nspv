@@ -1,6 +1,6 @@
 nspv - NIST SP 800-63B Validator
 ---
-![Go](https://github.com/s-tajima/nspv/workflows/Go/badge.svg) [![GoDoc](https://godoc.org/github.com/s-tajima/nspv?status.svg)](https://godoc.org/github.com/s-tajima/nspv) 
+![Go](https://github.com/s-tajima/nspv/workflows/Go/badge.svg) [![GoDoc](https://godoc.org/github.com/s-tajima/nspv?status.svg)](https://godoc.org/github.com/s-tajima/nspv) [![Codacy Badge](https://app.codacy.com/project/badge/Grade/3d5d752339c54d3dba8b71665f9b06c0)](https://www.codacy.com/manual/tajima1989/nspv?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=s-tajima/nspv&amp;utm_campaign=Badge_Grade)
 
 nspv is a password validation library for Go compatible with NIST Special Publication 800-63B.
 
@@ -41,4 +41,3 @@ fmt.Println(res.String()) // ViolateHibpCheck
 ## Author
 
 [Satoshi Tajima](https://github.com/s-tajima)
-
