@@ -9,7 +9,7 @@ on:
 jobs:
 
   build:
-    name: Build
+    name: Build & Test
     runs-on: ubuntu-latest
     steps:
 
@@ -30,3 +30,6 @@ jobs:
 
     - name: Test
       run: make test
+
+    - name: Run godacov
+      run: make godacov
