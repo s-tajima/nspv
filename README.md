@@ -7,7 +7,7 @@ nspv is a password validation library for Go compatible with NIST Special Public
 ## Description
 
 [NIST Special Publication 800-63B](https://pages.nist.gov/800-63-3/sp800-63b.html) is a notable guideline for digital identity / authentication.  
-nspv validates a password by the policies based on this guideline, and described below.
+nspv validates a password by policies based on this guideline. The policies are described below.
 
 * Ensure the password length. (at least 8 characters, at most 64 characters, by default)
 * Compare the password against a list that contains values known to be commonly-used, expected, or compromised. (use [Have I Been Pwned](https://haveibeenpwned.com/) internally)
