@@ -1,0 +1,32 @@
+name: Go
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+
+    - name: Set up Go 1.x
+      uses: actions/setup-go@78bd24e01a1a907f7ea3e614b4d7c15e563585a8
+      with:
+        go-version: ^1.13
+      id: go
+
+    - name: Check out code into the Go module directory
+      uses: actions/checkout@28c7f3d2b5162b5ddd3dfd9a45aa55eaf396478b
+
+    - name: Get dependencies
+      run: make deps
+
+    - name: Build
+      run: make build
+
+    - name: Test
+      run: make test
