@@ -12,18 +12,18 @@ import (
 )
 
 const (
-	HIBP_API_BASE_URL = "https://api.pwnedpasswords.com"
+	HibpApiBaseURL = "https://api.pwnedpasswords.com"
 )
 
 type hibpClient struct {
-	baseUrl string
+	baseURL string
 	client  *http.Client
 	ctx     context.Context
 }
 
 func newHibpClient() *hibpClient {
 	hc := hibpClient{}
-	hc.baseUrl = HIBP_API_BASE_URL
+	hc.baseURL = HibpApiBaseURL
 	hc.client = &http.Client{}
 
 	return &hc
@@ -51,7 +51,7 @@ func (hc *hibpClient) pwnedCount(password string) (int, error) {
 }
 
 func (hc *hibpClient) callRange(hash5 string) (string, error) {
-	url := fmt.Sprintf("%s/range/%s", HIBP_API_BASE_URL, hash5)
+	url := fmt.Sprintf("%s/range/%s", HibpApiBaseURL, hash5)
 
 	req, _ := http.NewRequest(
 		"GET",
