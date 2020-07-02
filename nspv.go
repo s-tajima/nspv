@@ -7,12 +7,13 @@ import (
 )
 
 const (
-	DefaultMinLength            = 8
-	DefaultMaxLength            = 64
-	DefaultHibpThreshold        = 0
-	DefaultLevenshteinThreshold = 2
+	DefaultMinLength            = 8  // Default minimum length of the password.
+	DefaultMaxLength            = 64 // Default maximum length of the password.
+	DefaultHibpThreshold        = 0  // Default threshold of HIBP count for the password.
+	DefaultLevenshteinThreshold = 2  // Default threshold of the Levenshtein distance to the dictionary for the password.
 )
 
+// Validator
 type Validator struct {
 	// Dictionary of the request context.
 	dict []string
@@ -58,7 +59,7 @@ func (v *Validator) SetMinLength(length int) {
 	v.minLength = length
 }
 
-// SetMinLength set maximum length of the password.
+// SetMaxLength set maximum length of the password.
 func (v *Validator) SetMaxLength(length int) {
 	v.maxLength = length
 }
@@ -142,7 +143,7 @@ func (v *Validator) checkHibp(password string) (Result, error) {
 	}
 
 	if count > v.hibpThreshold {
-		return ViolateBibpCheck, nil
+		return ViolateHibpCheck, nil
 	}
 	return Ok, nil
 }

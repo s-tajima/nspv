@@ -14,12 +14,12 @@ import (
 func activateMock() {
 	httpmock.Activate()
 
-	mockUrl := fmt.Sprintf("=~^%s/range/.*$", HIBP_API_BASE_URL)
+	mockURL := fmt.Sprintf("=~^%s/range/.*$", HibpApiBaseURL)
 	mockResponse := "96E32BEF9763E32668B444F64A6E591B462:10\r\n1C4ECB46CCD8BCB1FD0E9F07D859F554D76:0"
 
 	httpmock.RegisterResponder(
 		"GET",
-		mockUrl,
+		mockURL,
 		httpmock.NewStringResponder(200, mockResponse),
 	)
 }
@@ -44,7 +44,7 @@ func TestValidatorDefault(t *testing.T) {
 		{"password", ViolateDictCheck},
 		{"p@ssword", ViolateDictCheck},
 		{"p@s3w0rd", Ok},
-		{"pwnedpwned", ViolateBibpCheck},
+		{"pwnedpwned", ViolateHibpCheck},
 		{"pwnedqwn3d", Ok},
 	}
 
@@ -121,10 +121,10 @@ func TestValidatorHibpError(t *testing.T) {
 	httpmock.Activate()
 	defer httpmock.DeactivateAndReset()
 
-	mockUrl := fmt.Sprintf("=~^%s/range/.*$", HIBP_API_BASE_URL)
+	mockURL := fmt.Sprintf("=~^%s/range/.*$", HibpApiBaseURL)
 	httpmock.RegisterResponder(
 		"GET",
-		mockUrl,
+		mockURL,
 		httpmock.NewStringResponder(500, ""),
 	)
 

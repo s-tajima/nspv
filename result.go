@@ -1,14 +1,16 @@
 package nspv
 
+// Result of the validation.
 type Result int
 
 const (
-	Ok Result = iota
-	ViolateMinLengthCheck
-	ViolateMaxLengthCheck
-	ViolateDictCheck
-	ViolateBibpCheck
-	Error
+	_                     Result = iota
+	Ok                           // Validation OK
+	ViolateMinLengthCheck        // Violate minimum length check.
+	ViolateMaxLengthCheck        // Violate maximum length check.
+	ViolateDictCheck             // Violate dictionary check.
+	ViolateHibpCheck             // Violate HIBP check.
+	Error                        // Validation Error
 )
 
 func (r Result) String() string {
@@ -21,8 +23,8 @@ func (r Result) String() string {
 		return "ViolateMaxLengthCheck"
 	case ViolateDictCheck:
 		return "ViolateDictCheck"
-	case ViolateBibpCheck:
-		return "ViolateBibpCheck"
+	case ViolateHibpCheck:
+		return "ViolateHibpCheck"
 	case Error:
 		return "Error"
 	default:
