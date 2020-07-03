@@ -48,11 +48,11 @@ func TestValidatorDefault(t *testing.T) {
 		{"pwnedqwn3d", Ok},
 	}
 
-	c := NewValidator()
-	c.SetDict([]string{"password"})
+	v := NewValidator()
+	v.SetDict([]string{"password"})
 
 	for _, tt := range cases {
-		result, err := c.Validate(tt.password)
+		result, err := v.Validate(tt.password)
 		if err != nil {
 			t.Error(err)
 		}
@@ -79,12 +79,12 @@ func TestValidatorFixedLength(t *testing.T) {
 		{strings.Repeat("a", 8), ViolateMaxLengthCheck},
 	}
 
-	c := NewValidator()
-	c.SetMinLength(3)
-	c.SetMaxLength(7)
+	v := NewValidator()
+	v.SetMinLength(3)
+	v.SetMaxLength(7)
 
 	for _, tt := range cases {
-		result, err := c.Validate(tt.password)
+		result, err := v.Validate(tt.password)
 		if err != nil {
 			t.Error(err)
 		}
@@ -106,11 +106,11 @@ func TestValidatorWithContextTimeout(t *testing.T) {
 	ctx, cancel := context.WithTimeout(context.Background(), 1*time.Millisecond)
 	defer cancel()
 
-	c := NewValidator()
-	c.SetHibpClientContext(ctx)
+	v := NewValidator()
+	v.SetHibpClientContext(ctx)
 
 	for _, tt := range cases {
-		_, err := c.Validate(tt.password)
+		_, err := v.Validate(tt.password)
 		if err == nil || !errors.Is(err, tt.err) {
 			t.Errorf("for %s ... something wrong with context. (%s)", tt.password, err)
 		}
@@ -128,14 +128,14 @@ func TestValidatorHibpError(t *testing.T) {
 		httpmock.NewStringResponder(500, ""),
 	)
 
-	c := NewValidator()
-	result, _ := c.Validate("password")
+	v := NewValidator()
+	result, _ := v.Validate("password")
 	if result != Error {
 		t.Errorf("for password got:%s, want: %s", result, Error)
 	}
 
-	c.SetIgnoreHibpError(true)
-	result, _ = c.Validate("password")
+	v.SetIgnoreHibpError(true)
+	result, _ = v.Validate("password")
 	if result != Ok {
 		t.Errorf("for password got:%s, want: %s", result, Ok)
 	}
