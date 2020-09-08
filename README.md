@@ -11,7 +11,7 @@ nspv validates a password with policies based on this guideline. The policies ar
 
 * Ensure the password length. (min 8 characters, max 64 characters, by default)
 * Compare the password against a list that contains values known to be commonly-used, expected, or compromised. (use [Have I Been Pwned](https://haveibeenpwned.com/) internally)
-* Judge the password could be predicable in the request context. (use Levenshtein Distance)
+* Judge whether the password could be predicable in the request context. (use Levenshtein Distance)
 
 ## Installation
 
